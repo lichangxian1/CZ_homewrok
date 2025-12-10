@@ -73,6 +73,39 @@ Matrix *transposeMatrix(const Matrix *A){
     return C;
 }
 
+Matrix *multiplyMatrix(const Matrix *A, const Matrix *B){
+    if (A == NULL || B == NULL) {
+        return _ERROR_NULL_MATRIX;            
+    }
+    if (A -> cols != B -> rows){
+        return _ERROR_DIMENSION_NOT_MATCH;
+    }
+    if (A->data == NULL || B->data == NULL) {
+        return _ERROR_NULL_POINTER;
+    }
+    Matrix *C = (Matrix *)malloc(sizeof(Matrix));
+    if (C == NULL) {
+        return _ERROR_MEMORY_ALLOC_FAILED;
+    }
+    C -> rows = A -> rows;
+    C -> cols = B -> cols;
+    INTEGER n = A -> cols;
+    C -> data = (REAL*)malloc(C->rows * C->cols * sizeof(REAL));
+    if (C->data == NULL) {
+        free(C);
+        return NULL;
+    }
+    for (int i = 0; i < C->rows; i++) {
+        for (int j = 0; j < C->cols; j++) {
+            C->data[i * C->cols + j] = 0;
+            for (INTEGER k = 0; k < n; k++) {
+                C->data[i * C->cols + j] += A->data[i * A->cols + k] * B->data[k * B->cols + j];
+            }
+        }
+    }
+    return C;
+}
+
 void printMatrix(const Matrix *A){
     if (A == NULL){
         return _ERROR_NULL_MATRIX;   

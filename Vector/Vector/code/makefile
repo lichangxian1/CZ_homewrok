@@ -5,8 +5,9 @@ CC = gcc
 AR = ar
 
 # 定义编译选项
-CFLAGS = -Wall
-
+# -I./include : 告诉编译器头文件在 include 目录
+# -O2         : 开启优化 
+CFLAGS = -Wall -I./include -O2
 # 定义静态库的名称
 LIB_NAME = libCmatrixPro.a
 
