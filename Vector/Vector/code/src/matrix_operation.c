@@ -47,6 +47,31 @@ Matrix* scalaire_multiplyMatrix(const REAL Alpha, const Matrix *A){
     return C;
 
 }
+Matrix *transposeMatrix(const Matrix *A){
+    if (A == NULL){
+        return _ERROR_NULL_MATRIX;   
+    }
+    if (A->data == NULL) {
+        return _ERROR_NULL_POINTER;
+    }
+    Matrix *C = (Matrix *)malloc(sizeof(Matrix));
+    if (C == NULL) {
+        return NULL;
+    }
+    C->rows = A->cols;
+    C->cols = A->rows;
+    C->data = (REAL*)malloc(C->rows * C->cols * sizeof(REAL));
+    if (C->data == NULL) {
+        free(C);
+        return NULL;
+    }
+    for (int i = 0; i < C->rows; i++) {
+        for (int j = 0; j < C->cols; j++) {
+            C -> data [i * C->cols + j] = A -> data [j * A -> cols + i];
+        }
+    }
+    return C;
+}
 
 void printMatrix(const Matrix *A){
     if (A == NULL){
