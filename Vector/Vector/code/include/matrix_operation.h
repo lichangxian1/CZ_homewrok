@@ -9,10 +9,9 @@ Matrix *addMatrix(const Matrix *A, const Matrix *B);
 // 矩阵数乘
 Matrix *scalaire_multiplyMatrix(const REAL Alpha, const Matrix *A);
 // 矩阵乘法
-
+Matrix *multiplyMatrix(const Matrix *A, const Matrix *B);
 // 矩阵转置
 Matrix *transposeMatrix(const Matrix *A);
-
 // 打印矩阵
 void printMatrix(const Matrix *A);
 
