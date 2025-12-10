@@ -11,7 +11,7 @@ Matrix *scalaire_multiplyMatrix(const REAL Alpha, const Matrix *A);
 // 矩阵乘法
 
 // 矩阵转置
-Matrix *transposeMatrix();
+Matrix *transposeMatrix(const Matrix *A);
 
 // 打印矩阵
 void printMatrix(const Matrix *A);
