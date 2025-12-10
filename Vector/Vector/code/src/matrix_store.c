@@ -16,5 +16,15 @@ Matrix *createMatrix(INTEGER rows, INTEGER cols)
         free(m);
         return NULL;
     }
+
+    for (INTEGER i = 0; i < rows; i++)
+    {
+        for (INTEGER j = 0; j < cols; j++)
+        {
+            INDEX index = i *cols + j;
+            m->data[index] = (double)rand() / 10;
+        }
+    }
+
     return m;
 }

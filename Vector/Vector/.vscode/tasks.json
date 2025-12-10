@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Build with Include", 
+            "command": "C:/MinGW/bin/gcc.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}", 
+                // 下面这一行很重要：编译 src 里的所有 .c 文件
+                "${workspaceFolder}/Vector/Vector/code/src/*.c",
+                // 下面这两行很重要：告诉编译器头文件在哪里
+                "-I",
+                "${workspaceFolder}/Vector/Vector/code/include",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "自定义编译任务"
+        }
+    ]
+}
