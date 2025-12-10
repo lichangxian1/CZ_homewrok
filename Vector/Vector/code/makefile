@@ -5,14 +5,15 @@ CC = gcc
 AR = ar
 
 # 定义编译选项
-CFLAGS = -Wall
-
+# -I./include : 告诉编译器头文件在 include 目录
+# -O2         : 开启优化 
+CFLAGS = -Wall -I./include -O2
 # 定义静态库的名称
 LIB_NAME = libCmatrixPro.a
 
 
 # 定义源文件列表（假设所有源文件都在 src 目录下）
-SOURCES = matrix_store.c matrix_free.c matrix_basic_operation.c
+SOURCES = matrix_store.c matrix_free.c matrix_operation.c
 # 课上我们仅尝试了一个文件，如果存在多个文件，如上即可。
 
 # 定义源文件的路径
