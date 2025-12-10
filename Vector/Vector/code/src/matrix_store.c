@@ -22,7 +22,7 @@ Matrix *createMatrix(INTEGER rows, INTEGER cols)
         for (INTEGER j = 0; j < cols; j++)
         {
             INDEX index = i *cols + j;
-            m->data[index] = (double)rand() / 10;
+            m->data[index] = (double)(rand() % 10);
         }
     }
 

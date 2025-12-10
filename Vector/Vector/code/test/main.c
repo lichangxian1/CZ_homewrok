@@ -4,19 +4,30 @@
 int main(){
     INTEGER rows = 3;
     INTEGER cols = 3;
-    Matrix* mat_test = createMatrix(rows, cols);
-    if (mat_test == NULL){
-        return _ERROR_MEMORY_ALLOC_FAILED;
-    }
-    INTEGER count = 1;
-    for(INTEGER i = 0; i < mat_test -> rows; i++){
-        for (INTEGER j = 0; j < mat_test -> cols; j++){
-            INDEX index = i * mat_test -> cols + j;
-            mat_test -> data [index] = count;
-            count++;
-        }
-    }
-    printMatrix(mat_test);
+
+    Matrix* A = createMatrix(rows, cols);
+    printMatrix(A);
+
+    Matrix *B = createMatrix(rows, cols);
+    printMatrix(B);
+
+    Matrix *C = createMatrix(rows, cols);
+    printMatrix(C);
+
+    Matrix *D = addMatrix(A, B);
+    printMatrix(D);
+
+    Matrix *E = scalaire_multiplyMatrix(2.0, A );
+    printMatrix(E);
+
+    Matrix *F = multiplyMatrix(A, B);
+    printMatrix(F);
+    
+    Matrix *G = transposeMatrix(A);
+    printMatrix(G);
     return 0;
+
+    freeMatrix(C);
+    printMatrix(C);
 }
 

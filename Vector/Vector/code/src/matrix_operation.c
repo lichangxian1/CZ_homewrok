@@ -119,4 +119,5 @@ void printMatrix(const Matrix *A){
         }
         printf("\n");
     }
+    printf("\n");
 }
