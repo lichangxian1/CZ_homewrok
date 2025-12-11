@@ -8,15 +8,22 @@ AR = ar
 # -I./include : 告诉编译器头文件在 include 目录
 # -O2         : 开启优化 
 CFLAGS = -Wall -I./include -O2
+# 定义可执行文件的名称
+TARGET_EXE = matrix_test
+
+# main.c 的路径和目标文件
+MAIN_SRC = src/main.c
+MAIN_OBJECT = src/main.o
+
 # 定义静态库的名称
 LIB_NAME = libCmatrixPro.a
 
 
 # 定义源文件列表（假设所有源文件都在 src 目录下）
-SOURCES = matrix_store.c matrix_free.c matrix_basic_operation.c main.c
+SOURCES = matrix_store.c matrix_free.c matrix_operation.c main.c
 # 课上我们仅尝试了一个文件，如果存在多个文件，如上即可。
 
-# 定义源文件的路径
+# 定义源文件的路径cke
 SOURCES_PATH = ./src/
 
 # 定义目标文件列表（.o 文件）
@@ -27,13 +34,21 @@ all: $(LIB_NAME)
 
 # 静态库规则
 $(LIB_NAME): $(OBJECTS)
-$(AR) rcs $@ $^
+	$(AR) rcs $@ $^
 
 # 从源文件生成目标文件的规则
 $(SOURCES_PATH)%.o: $(SOURCES_PATH)%.c
-$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
+# 2. 修改默认目标 `all`，使其依赖于可执行文件
+all: $(LIB_NAME) $(TARGET_EXE)
+
+$(TARGET_EXE): $(MAIN_OBJECT) $(LIB_NAME)
+	@echo "Linking executable $@"
+	$(CC) $(MAIN_OBJECT) $(LIB_NAME) -o $@
 
 # 清理规则
 .PHONY: clean
 clean:
-rm -f $(OBJECTS) $(LIB_NAME)
+	rm -f $(OBJECTS) $(LIB_NAME)
